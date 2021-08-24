@@ -10,7 +10,7 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  /* transition: 0.5s; */
+  top: 100%;
 }
 
 .wrap div:nth-child(1) {
@@ -20,23 +20,15 @@
 
 .wrap div:nth-child(2) {
   background-color: orange;
-  top: 100%;
 }
 
 .wrap div:nth-child(3) {
   background-color: paleturquoise;
-  top: 100%;
 }
 
 .wrap div:nth-child(4) {
   background-color: plum;
-  top: 100%;
 }
-
-.wrap div.on {
-  top: 0;
-}
-
 div h1 {
   text-align: center;
   line-height: 100vh;

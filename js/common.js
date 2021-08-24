@@ -9,40 +9,60 @@ $(function () {
       if (oldIndex === 0) {
         return;
       }
+
       if ($(".wrap div").is(":animated")) {
-        $(".wrap div").animate();
+        // $(".wrap div").animate();
         return;
       }
-      console.log(currentIndex);
+      // console.log(currentIndex);
       $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 1000);
       oldIndex = --currentIndex;
       $(".wrap div").eq(oldIndex).stop().animate({ top: "0" }, 1000);
-      console.log(currentIndex);
-
-      $("ul li").on("click", function () {
-        //클릭 된 div만 끌어올리기
-        $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 1000);
-        $(".wrap div").eq($(this).index()).stop().animate({ top: "0" }, 1000);
-      });
+      // console.log(currentIndex);
     } else {
       if (oldIndex === 3) {
         return;
       }
 
       if ($(".wrap div").is(":animated")) {
-        $(".wrap div").animate();
+        // $(".wrap div").animate();
         return;
       }
       // console.log($(".wrap div").is(":animated"));
       $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 1000);
       oldIndex = ++currentIndex;
       $(".wrap div").eq(oldIndex).stop().animate({ top: "0" }, 1000);
+    }
+    //마우스 업다운d 구분
+  });
+  //마우스휠 이벤트
 
-      $("ul li").on("click", function () {
-        //클릭 된 div만 끌어올리기
-        $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 1000);
-        $(".wrap div").eq($(this).index()).stop().animate({ top: "0" }, 1000);
-      });
+  $("ul li").on("click", function () {
+    //클릭 된 div만 끌어올리기
+
+    let index = $(this).index();
+    console.log(`현재 활성화된 index ${currentIndex}`);
+    console.log(`클릭한 index ${index}`);
+    if ($(".wrap div").is(":animated")) {
+      // $(".wrap div").animate();
+      return;
+    }
+
+    if (index > currentIndex) {
+      // 아래로
+      $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 500);
+      $(".wrap div").eq(index).stop().animate({ top: "0" }, 500);
+    } else if (index < currentIndex) {
+      $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 500);
+      $(".wrap div").eq(index).stop().animate({ top: "0" }, 500);
+    }
+    currentIndex = index;
+
+    for (let i = 0; i < currentIndex; i++) {
+      $(".wrap div").eq(i).css({ top: "-100%" });
+    }
+    for (let i = currentIndex; i <= $("ul li").length; i++) {
+      $(".wrap div").eq(i).css({ top: "100%" });
     }
   });
 
