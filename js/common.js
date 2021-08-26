@@ -14,7 +14,8 @@ $(function () {
       $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 1000);
       console.log("이전 div index" + currentIndex);
       currentIndex = --currentIndex;
-
+      //$(".wrap div").eq(currentIndex)의 top값이 0 되기 전에 100%으로 만들어놓아야함
+      $(".wrap div").eq(currentIndex).stop().css({ top: "-100%" });
       $(".wrap div").eq(currentIndex).stop().animate({ top: "0" }, 1000);
       console.log("지금 div index" + currentIndex);
     } else {
@@ -27,6 +28,8 @@ $(function () {
       }
       $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 1000);
       currentIndex = ++currentIndex;
+      //$(".wrap div").eq(currentIndex)의 top 값이 0이기 전에 -100%으로 만들어놓아야함
+      $(".wrap div").eq(currentIndex).stop().css({ top: "100%" });
       $(".wrap div").eq(currentIndex).stop().animate({ top: "0" }, 1000);
     }
     //마우스 업다운 delta 구분
@@ -45,15 +48,15 @@ $(function () {
     if (index > currentIndex) {
       // 아래로 화면이동, div가 올라옴
       $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 500);
-      $(".wrap div").eq(index).stop().animate({ top: "100%" }, 500);
-      $(".wrap div").eq(index).stop().animate({ top: "0" }, 500);
       //$(".wrap div").eq(index)의 top값이 0 되기 전에 100%으로 만들어놓아야함
+      $(".wrap div").eq(index).stop().css({ top: "100%" });
+      $(".wrap div").eq(index).stop().animate({ top: "0" }, 500);
     } else if (index < currentIndex) {
       //위로 화면이동, div가 내려옴
       $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 500);
-      $(".wrap div").eq(index).stop().animate({ top: "-100%" }, 500);
-      $(".wrap div").eq(index).stop().animate({ top: "0" }, 500);
       //$(".wrap div").eq(index)의 top 값이 0이기 전에 -100%으로 만들어놓아야함
+      $(".wrap div").eq(index).stop().css({ top: "-100%" });
+      $(".wrap div").eq(index).stop().animate({ top: "0" }, 500);
     } else if (index == currentIndex) {
       return;
     }
