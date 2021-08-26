@@ -11,12 +11,12 @@ $(function () {
       if ($(".wrap div").is(":animated")) {
         return;
       }
-      $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 1000);
+      $(".wrap div").eq(currentIndex).stop().animate({ top: "100%" }, 500);
       console.log("이전 div index" + currentIndex);
       currentIndex = --currentIndex;
       //$(".wrap div").eq(currentIndex)의 top값이 0 되기 전에 100%으로 만들어놓아야함
       $(".wrap div").eq(currentIndex).stop().css({ top: "-100%" });
-      $(".wrap div").eq(currentIndex).stop().animate({ top: "0" }, 1000);
+      $(".wrap div").eq(currentIndex).stop().animate({ top: "0" }, 500);
       console.log("지금 div index" + currentIndex);
     } else {
       if (currentIndex === $(".wrap div").length - 1) {
@@ -26,11 +26,11 @@ $(function () {
       if ($(".wrap div").is(":animated")) {
         return;
       }
-      $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 1000);
+      $(".wrap div").eq(currentIndex).stop().animate({ top: "-100%" }, 500);
       currentIndex = ++currentIndex;
       //$(".wrap div").eq(currentIndex)의 top 값이 0이기 전에 -100%으로 만들어놓아야함
       $(".wrap div").eq(currentIndex).stop().css({ top: "100%" });
-      $(".wrap div").eq(currentIndex).stop().animate({ top: "0" }, 1000);
+      $(".wrap div").eq(currentIndex).stop().animate({ top: "0" }, 500);
     }
     //마우스 업다운 delta 구분
   });
@@ -76,9 +76,4 @@ $(function () {
 
     //호출하려는 div의 top 값만 움직이기
   });
-
-  // 스크롤 up => -100% -> 0 되어야함/ 0 -> 100% 되어야함
-  // 스크롤 down =>100% -> 0 / 0 -> -100%
-
-  // 마우스휠 동작할 때 애니메이션 걸려야함
 });
